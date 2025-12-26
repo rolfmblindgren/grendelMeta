@@ -1,0 +1,14 @@
+Package: grendelMeta
+Type: Package
+Title: Social Metadata Helpers for Shiny Apps
+Version: 0.1.0
+Authors@R: person(given="Rolf", family="Lindgren", email="rolf@grendel.no", role = c("aut", "cre"))
+Description: Utilities for injecting Open Graph and Twitter metadata
+    into Shiny applications from YAML configuration.
+License: file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports:
+    shiny,
+    yaml
+RoxygenNote: 7.3.3
