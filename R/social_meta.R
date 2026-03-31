@@ -61,6 +61,9 @@ social_meta <- function(meta) {
     if (!is.null(meta$twitter_image_alt))
       shiny::tags$meta(name="twitter:image:alt", content=meta$twitter_image_alt),
 
+    if (!is.null(meta$bing_site_verification))
+      shiny::tags$meta(name="msvalidate.01", content=meta$bing_site_verification),
+
     if (!is.null(schema))
       shiny::tags$script(
         type = "application/ld+json",

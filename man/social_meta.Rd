@@ -16,5 +16,5 @@ Supports canonical URL, Open Graph, Twitter cards, and optional
 schema.org JSON-LD metadata. Extra fields can be supplied through the
 YAML file or list, including \code{author_name}, \code{publisher_name},
 \code{schema_type}, \code{application_category}, \code{robots},
-\code{image_alt}, and \code{twitter_image_alt}.
+\code{image_alt}, de{twitter_image_alt}, and de{bing_site_verification}. 
 }
