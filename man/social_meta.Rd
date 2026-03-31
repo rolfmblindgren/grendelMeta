@@ -10,5 +10,11 @@ social_meta(meta)
 \item{meta}{Either a path to a YAML file or a named list}
 }
 \description{
-Inject social metadata into Shiny UI
+Inject social metadata into Shiny UI.
+
+Supports canonical URL, Open Graph, Twitter cards, and optional
+schema.org JSON-LD metadata. Extra fields can be supplied through the
+YAML file or list, including \code{author_name}, \code{publisher_name},
+\code{schema_type}, \code{application_category}, \code{robots},
+\code{image_alt}, and \code{twitter_image_alt}.
 }
