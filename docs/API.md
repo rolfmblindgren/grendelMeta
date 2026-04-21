@@ -1,0 +1,167 @@
+# API Contract for `grendelMeta`
+
+This page is written so another agent can use the package without reading the source.
+
+## Exported surface
+
+- `social_meta(meta)`
+
+There are no other exported helpers.
+
+## Return value
+
+`social_meta()` returns a `shiny::tags$head()` fragment.
+
+You normally place it inside a Shiny UI definition, for example:
+
+```r
+ui <- shiny::fluidPage(
+  grendelMeta::social_meta(meta),
+  shiny::h1("Hello")
+)
+```
+
+## Input contract
+
+`meta` can be one of:
+
+- a character string containing a path to a YAML file
+- a named list of metadata values
+
+If `meta` is a character string, the package reads it with `yaml::read_yaml()`.
+
+If the file does not exist, the function stops with:
+
+- `Meta file not found: <path>`
+
+## Required fields
+
+These keys must exist in the final metadata object:
+
+- `title`
+- `description`
+- `url`
+- `image`
+
+The function checks only that the names exist. It does not currently validate that the values are non-empty strings.
+
+If any required key is missing, the function stops with:
+
+- `Missing required meta fields: ...`
+
+## Defaults
+
+The package fills these defaults when the key is missing or `NULL`:
+
+- `locale = "nb_NO"`
+- `site_name = "Grendel"`
+- `robots = "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"`
+- `twitter_card = "summary_large_image"`
+- `schema_type = "WebApplication"`
+- `application_category = "MedicalWebApplication"`
+- `operating_system = "Any"`
+- `author_type = "Person"`
+- `publisher_type = "Organization"`
+- `in_language = locale`
+
+Important detail:
+
+- `schema` is enabled unless it is exactly `FALSE`
+- `schema = TRUE`, `schema = NULL`, or an omitted `schema` field all result in JSON-LD output
+- `schema = FALSE` suppresses JSON-LD
+
+## Output tags
+
+The function writes these tags into the returned head fragment:
+
+- `<link rel="canonical" href="...">`
+- `<meta name="description" ...>`
+- `<meta name="robots" ...>`
+- Open Graph tags:
+  - `og:type = website`
+  - `og:title`
+  - `og:description`
+  - `og:url`
+  - `og:image`
+  - `og:site_name` when `site_name` is present
+  - `og:locale` when `locale` is present
+  - `og:image:width` when `image_width` is present
+  - `og:image:height` when `image_height` is present
+  - `og:image:type` when `image_type` is present
+  - `og:image:alt` when `image_alt` is present
+- Twitter Card tags:
+  - `twitter:card`
+  - `twitter:title`
+  - `twitter:description`
+  - `twitter:image`
+  - `twitter:url`
+  - `twitter:site` when `twitter_site` is present
+  - `twitter:creator` when `twitter_creator` is present
+  - `twitter:image:alt` when `twitter_image_alt` is present
+- Bing verification:
+  - `msvalidate.01` when `bing_site_verification` is present
+- Schema.org JSON-LD:
+  - only when `schema` is not `FALSE`
+  - always includes `@context`, `@type`, `name`, `description`, `url`, and `inLanguage`
+  - conditionally includes `applicationCategory`, `operatingSystem`, `educationalUse`, `isAccessibleForFree`, `disclaimer`, `author`, and `publisher`
+
+## Field map
+
+| Key | Used for |
+| --- | --- |
+| `title` | Page title, Open Graph title, Twitter title, schema name |
+| `description` | Meta description, Open Graph description, Twitter description, schema description |
+| `url` | Canonical URL, Open Graph URL, Twitter URL, schema URL |
+| `image` | Open Graph image, Twitter image |
+| `locale` | Open Graph locale, schema language default |
+| `site_name` | Open Graph site name |
+| `robots` | Robots meta tag |
+| `twitter_card` | Twitter card type |
+| `twitter_site` | Twitter site handle |
+| `twitter_creator` | Twitter creator handle |
+| `twitter_image_alt` | Twitter image alt text |
+| `image_alt` | Open Graph image alt text |
+| `image_width` | Open Graph image width |
+| `image_height` | Open Graph image height |
+| `image_type` | Open Graph image MIME type |
+| `bing_site_verification` | Bing Webmaster verification |
+| `schema_type` | Schema.org `@type` |
+| `application_category` | Schema.org `applicationCategory` |
+| `operating_system` | Schema.org `operatingSystem` |
+| `educational_use` | Schema.org `educationalUse` |
+| `is_accessible_for_free` | Schema.org `isAccessibleForFree` |
+| `disclaimer` | Schema.org `disclaimer` |
+| `author_name` | Schema.org `author.name` |
+| `author_type` | Schema.org `author.@type` |
+| `publisher_name` | Schema.org `publisher.name` |
+| `publisher_type` | Schema.org `publisher.@type` |
+| `in_language` | Schema.org `inLanguage` |
+| `schema` | Turns JSON-LD on or off |
+
+## Behavior notes
+
+- The function does not mutate the input list outside its local copy.
+- The helper returns plain Shiny tags, so it is safe to embed in `fluidPage()`, `navbarPage()`, or any other UI container that accepts head tags.
+- The package is opinionated toward a Norwegian Shiny app, but every default can be overridden.
+- If you need a simpler SEO-only configuration, you can still use the required four fields and leave the rest blank.
+
+## Minimal example
+
+```r
+grendelMeta::social_meta(list(
+  title = "Example app",
+  description = "Short app description.",
+  url = "https://example.no",
+  image = "https://example.no/share.png"
+))
+```
+
+## YAML example
+
+```yaml
+title: "Example app"
+description: "Short app description."
+url: "https://example.no"
+image: "https://example.no/share.png"
+schema: false
+```

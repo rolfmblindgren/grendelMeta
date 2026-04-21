@@ -1,0 +1,134 @@
+# Referanse for `grendelMeta`
+
+Denne pakken gjør én ting: den lager metadata for en Shiny-app og returnerer dem som HTML-tagger til `<head>`.
+
+Det er nyttig når du vil at siden skal se riktig ut i delinger på Facebook, LinkedIn, X, Slack og andre tjenester som leser Open Graph eller Twitter Card-metadata.
+
+## Hovedflyt
+
+1. Du sender inn en YAML-fil eller en navngitt liste.
+2. `social_meta()` leser inn dataene.
+3. Standardverdier fylles inn der det passer.
+4. De fire grunnfeltene blir kontrollert.
+5. Funksjonen bygger en `tags$head()`-blokk med metadata.
+
+## Inndata
+
+`social_meta(meta)` tar imot:
+
+- en streng med filsti til YAML
+- eller en navngitt liste
+
+### Obligatoriske felter
+
+Disse må finnes uansett:
+
+- `title`
+- `description`
+- `url`
+- `image`
+
+Hvis ett av dem mangler, stopper funksjonen med en feilmelding.
+
+## Standardverdier
+
+Hvis du ikke setter dem selv, brukes disse standardene:
+
+- `locale = "nb_NO"`
+- `site_name = "Grendel"`
+- `robots = "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"`
+- `twitter_card = "summary_large_image"`
+- `schema_type = "WebApplication"`
+- `application_category = "MedicalWebApplication"`
+- `operating_system = "Any"`
+- `author_type = "Person"`
+- `publisher_type = "Organization"`
+- `in_language = locale`
+
+## Hvilke tagger som blir laget
+
+Funksjonen bygger blant annet:
+
+- `<link rel="canonical">`
+- `meta name="description"`
+- `meta name="robots"`
+- `meta property="og:*"`
+- `meta name="twitter:*"`
+- `meta name="msvalidate.01"` hvis Bing-verifisering er satt
+- `<script type="application/ld+json">` for schema.org
+- `<title>`
+
+## Open Graph
+
+Disse feltene brukes direkte i Open Graph:
+
+- `title`
+- `description`
+- `url`
+- `image`
+- `site_name`
+- `locale`
+- `image_width`
+- `image_height`
+- `image_type`
+- `image_alt`
+
+## Twitter Card
+
+Disse feltene brukes direkte i Twitter Card:
+
+- `twitter_card`
+- `twitter_site`
+- `twitter_creator`
+- `twitter_image_alt`
+
+## Schema.org JSON-LD
+
+JSON-LD blir laget med disse grunnfeltene:
+
+- `@context = "https://schema.org"`
+- `@type = schema_type`
+- `name = title`
+- `description = description`
+- `url = url`
+- `inLanguage = in_language`
+
+I tillegg kan disse feltene være med:
+
+- `application_category`
+- `operating_system`
+- `educational_use`
+- `is_accessible_for_free`
+- `disclaimer`
+- `author_name`
+- `publisher_name`
+
+Hvis du setter `schema = FALSE`, blir JSON-LD utelatt helt.
+
+## Praktisk eksempel
+
+```r
+ui <- shiny::fluidPage(
+  grendelMeta::social_meta(list(
+    title = "Kalkulator",
+    description = "En enkel app for å beregne noe.",
+    url = "https://example.no",
+    image = "https://example.no/preview.png",
+    twitter_site = "@example",
+    twitter_creator = "@example",
+    schema = TRUE
+  )),
+  shiny::h1("Kalkulator")
+)
+```
+
+## Når du bør bruke den
+
+Bruk pakken når du vil ha en liten og ryddig løsning for metadata i en Shiny-app uten å bygge en egen metadata-motor.
+
+Den passer spesielt godt når du:
+
+- har én app eller et lite antall apper
+- vil styre metadata fra en YAML-fil
+- vil ha samme metadata i flere miljøer
+- vil ha sosial deling og søk som oppfører seg forutsigbart
