@@ -7,14 +7,32 @@
 social_meta(meta)
 }
 \arguments{
-\item{meta}{Either a path to a YAML file or a named list}
+\item{meta}{Either a path to a YAML file or a named list. The values must
+include \code{title}, \code{description}, \code{url}, and \code{image}.}
+}
+\value{
+A \code{shiny::tags$head()} fragment containing canonical, Open Graph,
+Twitter Card, and optional schema.org metadata.
+}
+\details{
+If \code{meta} is a character string, it is treated as a YAML file path and
+read with \code{yaml::read_yaml()}.
+
+The function fills defaults for common fields such as \code{locale},
+\code{site_name}, \code{robots}, \code{twitter_card}, and schema.org
+properties. Set \code{schema = FALSE} to omit JSON-LD entirely.
 }
 \description{
 Inject social metadata into Shiny UI.
-
-Supports canonical URL, Open Graph, Twitter cards, and optional
-schema.org JSON-LD metadata. Extra fields can be supplied through the
-YAML file or list, including \code{author_name}, \code{publisher_name},
-\code{schema_type}, \code{application_category}, \code{robots},
-\code{image_alt}, de{twitter_image_alt}, and de{bing_site_verification}. 
+}
+\examples{
+\dontrun{
+ui <- shiny::fluidPage(
+  social_meta("meta.yml"),
+  shiny::h1("Example app")
+)
+}
+}
+\seealso{
+\code{shiny::tags}
 }
