@@ -4,3 +4,7 @@ read_meta <- function(path) {
   }
   yaml::read_yaml(path)
 }
+
+# Local Variables:
+# mode: R
+# End:

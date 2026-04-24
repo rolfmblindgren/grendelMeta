@@ -1,6 +1,13 @@
 #' Inject social metadata into Shiny UI
 #'
-#' @param meta Either a path to a YAML file or a named list
+#' @param meta Either a path to a YAML file or a named list. The final
+#'   metadata must include \code{title}, \code{description}, \code{url}, and
+#'   \code{image}.
+#' @return A \code{shiny::tags$head()} fragment containing canonical, Open
+#'   Graph, Twitter Card, and optional schema.org metadata.
+#' @details If \code{meta} is a character string, it is treated as a YAML file
+#'   path and read with \code{yaml::read_yaml()}. Set \code{schema = FALSE} to
+#'   suppress JSON-LD output.
 #' @export
 social_meta <- function(meta) {
   if (is.character(meta)) {
@@ -124,3 +131,7 @@ build_schema_meta <- function(meta) {
 
   schema
 }
+
+# Local Variables:
+# mode: R
+# End:
