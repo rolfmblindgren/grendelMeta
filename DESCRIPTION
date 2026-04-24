@@ -1,11 +1,11 @@
-Package: shinyMeta
+Package: shinyseo
 Type: Package
-Title: Social Metadata Helpers for Shiny Apps
+Title: SEO and Social Metadata Helpers for Shiny Apps
 Version: 0.1.0
 Authors@R: person(given="Rolf", family="Lindgren", email="rolf@grendel.no", role = c("aut", "cre"))
-Description: Utilities for injecting Open Graph, Twitter, and schema.org metadata
+Description: Utilities for injecting SEO, Open Graph, Twitter, and schema.org metadata
     into Shiny applications from YAML files or named lists.
-License: file LICENSE
+License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
 Imports:

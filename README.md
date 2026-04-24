@@ -1,6 +1,6 @@
-# shinyMeta
+# shinyseo
 
-`shinyMeta` is a small helper package for Shiny apps that need social and search metadata.
+`shinyseo` is a small helper package for Shiny apps that need social and search metadata.
 
 It builds one `shiny::tags$head()` fragment containing:
 
@@ -66,7 +66,7 @@ Common extras:
 
 ```r
 library(shiny)
-library(shinyMeta)
+library(shinyseo)
 
 ui <- fluidPage(
   social_meta("meta.yml"),
@@ -96,4 +96,4 @@ The long-form package docs live in vignettes:
 - [API contract](vignettes/API.Rmd)
 - [Reference guide](vignettes/REFERENCE.Rmd)
 
-If the package is installed, you can also open them with `browseVignettes("shinyMeta")`.
+If the package is installed, you can also open them with `browseVignettes("shinyseo")`.

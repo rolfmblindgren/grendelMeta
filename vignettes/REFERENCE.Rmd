@@ -7,7 +7,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-# Referanse for `shinyMeta`
+# Referanse for `shinyseo`
 
 Denne pakken lager metadata for en Shiny-app og returnerer dem som HTML-tagger til `<head>`.
 
@@ -116,7 +116,7 @@ Hvis du setter `schema = FALSE`, blir JSON-LD utelatt helt.
 
 ```r
 ui <- shiny::fluidPage(
-  shinyMeta::social_meta(list(
+  shinyseo::social_meta(list(
     title = "Kalkulator",
     description = "En enkel app for å beregne noe.",
     url = "https://example.no",

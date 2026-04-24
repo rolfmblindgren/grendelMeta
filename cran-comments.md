@@ -6,3 +6,4 @@
 * `R CMD check --no-manual --as-cran` completed successfully.
 * The only note was `checking for future file timestamps ... unable to verify current time`.
 * Vignettes render successfully.
+* The package is being resubmitted after a naming conflict and license cleanup.

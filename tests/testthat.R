@@ -1,7 +1,7 @@
 library(testthat)
-library(shinyMeta)
+library(shinyseo)
 
-test_check("shinyMeta")
+test_check("shinyseo")
 
 # Local Variables:
 # mode: R

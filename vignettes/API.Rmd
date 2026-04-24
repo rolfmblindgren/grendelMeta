@@ -7,7 +7,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-# API Contract for `shinyMeta`
+# API Contract for `shinyseo`
 
 This page is written so another agent can use the package without reading the source.
 
@@ -24,7 +24,7 @@ There are no other exported helpers.
 You normally place it inside a Shiny UI definition, for example:
 
 ```r
-shinyMeta::social_meta(list(
+shinyseo::social_meta(list(
   title = "Hello",
   description = "Short app description.",
   url = "https://example.no",
