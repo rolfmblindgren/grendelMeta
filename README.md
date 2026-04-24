@@ -63,79 +63,11 @@ social_meta(list(
 ))
 ```
 
-## Example `meta.yml`
+## Vignettes
 
-```yaml
-title: "Example app"
-description: "A short app description."
-url: "https://example.no"
-image: "https://example.no/share.png"
+The long-form package docs live in vignettes:
 
-locale: "en_US"
-twitter_card: "summary_large_image"
-twitter_site: "@example"
-twitter_creator: "@example"
+- [API contract](vignettes/API.Rmd)
+- [Reference guide](vignettes/REFERENCE.Rmd)
 
-image_alt: "Screenshot of the app"
-twitter_image_alt: "Screenshot of the app"
-
-schema: true
-author_name: "Rolf Lindgren"
-publisher_name: "Example AS"
-bing_site_verification: "YOUR_BING_CODE"
-```
-
-## Fields
-
-### Required fields
-
-| Field | Used for |
-| --- | --- |
-| `title` | Page title and share title |
-| `description` | Search and share description |
-| `url` | Canonical URL, `og:url`, and `twitter:url` |
-| `image` | Share image |
-
-### Common optional fields
-
-| Field | Default | Notes |
-| --- | --- | --- |
-| `locale` | `en_US` | Open Graph locale and schema language default |
-| `robots` | `index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1` | Robots directive |
-| `twitter_card` | `summary_large_image` | Twitter card type |
-| `schema` | on | Set to `FALSE` to suppress JSON-LD |
-| `schema_type` | `WebApplication` | Schema.org type |
-| `operating_system` | `Any` | Schema.org operating system |
-| `author_type` | `Person` | Schema.org author type |
-| `publisher_type` | `Organization` | Schema.org publisher type |
-| `in_language` | same as `locale` | Schema.org language |
-
-### Optional share fields
-
-| Field | Used for |
-| --- | --- |
-| `site_name` | `og:site_name` |
-| `image_width` | `og:image:width` |
-| `image_height` | `og:image:height` |
-| `image_type` | `og:image:type` |
-| `image_alt` | `og:image:alt` |
-| `twitter_site` | `twitter:site` |
-| `twitter_creator` | `twitter:creator` |
-| `twitter_image_alt` | `twitter:image:alt` |
-| `bing_site_verification` | `msvalidate.01` |
-| `application_category` | `applicationCategory` in schema.org |
-| `educational_use` | `educationalUse` in schema.org |
-| `is_accessible_for_free` | `isAccessibleForFree` in schema.org |
-| `disclaimer` | `disclaimer` in schema.org |
-
-## Notes
-
-- `social_meta()` returns HTML tags, so put it in the UI, not in the server.
-- If you pass a character string, it is treated as a file path.
-- If the file does not exist, the function stops with a clear error.
-- If a required field is missing, the function stops with a clear error.
-- The package is intentionally small and opinionated, but every default can be overridden.
-
-## Reference
-
-See [`docs/API.md`](docs/API.md) for a full field contract and [`docs/REFERENCE.md`](docs/REFERENCE.md) for practical usage patterns.
+If the package is installed, you can also open them with `browseVignettes("shinyMeta")`.

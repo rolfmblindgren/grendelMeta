@@ -7,36 +7,19 @@
 social_meta(meta)
 }
 \arguments{
-\item{meta}{Either a path to a YAML file or a named list. The values must
-include \code{title}, \code{description}, \code{url}, and \code{image}.}
+\item{meta}{Either a path to a YAML file or a named list. The final
+metadata must include \code{title}, \code{description}, \code{url}, and
+\code{image}.}
 }
 \value{
-A \code{shiny::tags$head()} fragment containing canonical, Open Graph,
-Twitter Card, and optional schema.org metadata.
-}
-\details{
-If \code{meta} is a character string, it is treated as a YAML file path and
-read with \code{yaml::read_yaml()}.
-
-The function fills defaults for common fields such as \code{locale},
-\code{robots}, \code{twitter_card}, and schema.org properties. Set
-\code{schema = FALSE} to omit JSON-LD entirely.
+A \code{shiny::tags$head()} fragment containing canonical, Open
+  Graph, Twitter Card, and optional schema.org metadata.
 }
 \description{
-Inject social metadata into Shiny UI.
+Inject social metadata into Shiny UI
 }
-\examples{
-\dontrun{
-ui <- shiny::fluidPage(
-  social_meta("meta.yml"),
-  shiny::h1("Example app")
-)
+\details{
+If \code{meta} is a character string, it is treated as a YAML file
+  path and read with \code{yaml::read_yaml()}. Set \code{schema = FALSE} to
+  suppress JSON-LD output.
 }
-}
-\seealso{
-\code{shiny::tags}
-}
-
-% Local Variables:
-% mode: Rd
-% End:

@@ -1,3 +1,12 @@
+---
+title: "API Contract"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{API Contract}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
 # API Contract for `shinyMeta`
 
 This page is written so another agent can use the package without reading the source.
@@ -15,10 +24,12 @@ There are no other exported helpers.
 You normally place it inside a Shiny UI definition, for example:
 
 ```r
-ui <- shiny::fluidPage(
-  shinyMeta::social_meta(meta),
-  shiny::h1("Hello")
-)
+shinyMeta::social_meta(list(
+  title = "Hello",
+  description = "Short app description.",
+  url = "https://example.no",
+  image = "https://example.no/share.png"
+))
 ```
 
 ## Input contract
@@ -112,7 +123,6 @@ The function writes these tags into the returned head fragment:
 | `url` | Canonical URL, Open Graph URL, Twitter URL, schema URL |
 | `image` | Open Graph image, Twitter image |
 | `locale` | Open Graph locale, schema language default |
-| `site_name` | Open Graph site name |
 | `robots` | Robots meta tag |
 | `twitter_card` | Twitter card type |
 | `twitter_site` | Twitter site handle |
@@ -142,24 +152,3 @@ The function writes these tags into the returned head fragment:
 - The helper returns plain Shiny tags, so it is safe to embed in `fluidPage()`, `navbarPage()`, or any other UI container that accepts head tags.
 - The package is intentionally small and generic.
 - If you need a simpler SEO-only configuration, you can still use the required four fields and leave the rest blank.
-
-## Minimal example
-
-```r
-shinyMeta::social_meta(list(
-  title = "Example app",
-  description = "Short app description.",
-  url = "https://example.no",
-  image = "https://example.no/share.png"
-))
-```
-
-## YAML example
-
-```yaml
-title: "Example app"
-description: "Short app description."
-url: "https://example.no"
-image: "https://example.no/share.png"
-schema: false
-```

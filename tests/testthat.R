@@ -1,4 +1,5 @@
 library(testthat)
+library(shinyMeta)
 
 test_check("shinyMeta")
 
