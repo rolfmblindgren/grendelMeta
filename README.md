@@ -36,6 +36,32 @@ When you call `social_meta()`, the package:
 - `schema = FALSE` disables JSON-LD output
 - any other value of `schema` keeps JSON-LD enabled
 
+## Config cheat sheet
+
+Minimal configuration:
+
+```yaml
+title: "Example app"
+description: "A short app description."
+url: "https://example.no"
+image: "https://example.no/share.png"
+```
+
+Common extras:
+
+| Field | What it does |
+| --- | --- |
+| `locale` | Sets Open Graph locale and schema language default |
+| `robots` | Controls the robots meta tag |
+| `twitter_card` | Sets the Twitter card type |
+| `site_name` | Sets `og:site_name` |
+| `twitter_site` | Sets `twitter:site` |
+| `twitter_creator` | Sets `twitter:creator` |
+| `image_alt` | Sets `og:image:alt` |
+| `twitter_image_alt` | Sets `twitter:image:alt` |
+| `bing_site_verification` | Sets Bing verification |
+| `schema` | Set to `FALSE` to disable JSON-LD |
+
 ## Quick use
 
 ```r
