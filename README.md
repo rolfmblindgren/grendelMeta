@@ -1,54 +1,50 @@
-# grendelMeta
+# shinyMeta
 
-`grendelMeta` er en liten hjelpepake for Shiny-apper som trenger bedre metadata for deling i sosiale medier og søk.
+`shinyMeta` is a small helper package for Shiny apps that need social and search metadata.
 
-Pakken bygger én `shiny::tags$head()`-blokk med:
+It builds one `shiny::tags$head()` fragment containing:
 
 - canonical URL
 - `description`
-- Open Graph-tagger
-- Twitter Card-tagger
-- valgfri schema.org JSON-LD
-- valgfri Bing-verifisering
+- Open Graph tags
+- Twitter Card tags
+- optional schema.org JSON-LD
+- optional Bing site verification
 
-Den kan lese metadata fra en YAML-fil eller ta imot en navngitt liste direkte i R.
+The package accepts either a YAML file path or a named list.
 
-If you only need the short contract: there is one exported function, `social_meta()`. It returns a `shiny::tags$head()` fragment that you place in the UI of a Shiny app.
+If you only need the short contract: there is one exported function, `social_meta()`. It returns a `shiny::tags$head()` fragment that belongs in the UI of a Shiny app.
 
-## Hva den gjør
+## What it does
 
-Når du kaller `social_meta()`, gjør pakken dette:
+When you call `social_meta()`, the package:
 
-1. Leser inn metadata fra YAML eller bruker lista du sender inn.
-2. Fyller inn standardverdier for vanlige felt som språk, robots og Twitter-kort.
-3. Sjekker at de fire grunnfeltene finnes:
-   - `title`
-   - `description`
-   - `url`
-   - `image`
-4. Bygger HTML-tagger som du legger i Shiny-UI-en.
-5. Legger til JSON-LD hvis schema ikke er slått av.
+1. Reads metadata from YAML or uses the list you pass in.
+2. Fills in safe defaults for common fields like locale, robots, and Twitter card type.
+3. Checks that the required fields exist.
+4. Builds HTML tags for Shiny UI.
+5. Adds JSON-LD unless you turn schema off.
 
-## API i kortform
+## API in short
 
 `social_meta(meta)`:
 
-- `meta` kan være en YAML-sti eller en navngitt liste
-- de fire grunnfeltene `title`, `description`, `url` og `image` må finnes
-- hvis `meta` er en tekststreng, leses den som filsti med `yaml::read_yaml()`
-- hvis `meta` mangler en nøkkel, brukes standardverdi der pakken har en, ellers stoppes det med feil
-- hvis `schema` er noe annet enn `FALSE`, blir JSON-LD laget
-- hvis `schema = FALSE`, blir JSON-LD ikke skrevet ut
+- `meta` may be a YAML path or a named list
+- `title`, `description`, `url`, and `image` are required
+- if `meta` is a character string, it is read with `yaml::read_yaml()`
+- missing keys use package defaults where provided
+- `schema = FALSE` disables JSON-LD output
+- any other value of `schema` keeps JSON-LD enabled
 
-## Kort bruk
+## Quick use
 
 ```r
 library(shiny)
-library(grendelMeta)
+library(shinyMeta)
 
 ui <- fluidPage(
   social_meta("meta.yml"),
-  h1("Min app")
+  h1("My app")
 )
 
 server <- function(input, output, session) {}
@@ -56,97 +52,90 @@ server <- function(input, output, session) {}
 shinyApp(ui, server)
 ```
 
-Du kan også sende inn en liste:
+You can also pass a list directly:
 
 ```r
 social_meta(list(
-  title = "Helsekalkulator",
-  description = "En enkel kalkulator for pasienter og ansatte.",
-  url = "https://example.no/helse",
-  image = "https://example.no/preview.png"
+  title = "Example app",
+  description = "A short app description.",
+  url = "https://example.no",
+  image = "https://example.no/share.png"
 ))
 ```
 
-## Eksempel på `meta.yml`
+## Example `meta.yml`
 
 ```yaml
-title: "Helsekalkulator"
-description: "En enkel kalkulator for pasienter og ansatte."
-url: "https://example.no/helse"
-image: "https://example.no/preview.png"
+title: "Example app"
+description: "A short app description."
+url: "https://example.no"
+image: "https://example.no/share.png"
 
-site_name: "Grendel"
-locale: "nb_NO"
+locale: "en_US"
 twitter_card: "summary_large_image"
-twitter_site: "@grendelno"
-twitter_creator: "@rolf"
+twitter_site: "@example"
+twitter_creator: "@example"
 
-image_alt: "Skjermbilde av helsekalkulatoren"
-twitter_image_alt: "Skjermbilde av helsekalkulatoren"
+image_alt: "Screenshot of the app"
+twitter_image_alt: "Screenshot of the app"
 
 schema: true
 author_name: "Rolf Lindgren"
-publisher_name: "Grendel"
-bing_site_verification: "DIN_BING_NØKKEL"
+publisher_name: "Example AS"
+bing_site_verification: "YOUR_BING_CODE"
 ```
 
-## Felter
+## Fields
 
-### Påkrevde felter
+### Required fields
 
-| Felt | Hva det brukes til |
+| Field | Used for |
 | --- | --- |
-| `title` | Sidetittel og delingstittel |
-| `description` | Beskrivelse for søk og sosiale medier |
-| `url` | Canonical URL, `og:url` og `twitter:url` |
-| `image` | Forsidebilde for deling |
+| `title` | Page title and share title |
+| `description` | Search and share description |
+| `url` | Canonical URL, `og:url`, and `twitter:url` |
+| `image` | Share image |
 
-### Vanlige valgfrie felter
+### Common optional fields
 
-| Felt | Standard | Kommentar |
+| Field | Default | Notes |
 | --- | --- | --- |
-| `locale` | `nb_NO` | Språk/locale for Open Graph og JSON-LD |
-| `site_name` | `Grendel` | Navn på nettstedet |
-| `robots` | `index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1` | Robots-direktiv |
-| `twitter_card` | `summary_large_image` | Twitter-korttype |
-| `schema` | på | Sett til `FALSE` for å slå av JSON-LD |
-| `schema_type` | `WebApplication` | Schema.org-type |
-| `application_category` | `MedicalWebApplication` | Schema.org-kategori |
-| `operating_system` | `Any` | Schema.org-operativsystem |
-| `author_name` | tom | Schema.org-forfatter |
-| `publisher_name` | tom | Schema.org-utgiver |
-| `in_language` | samme som `locale` | Språk i schema.org |
+| `locale` | `en_US` | Open Graph locale and schema language default |
+| `robots` | `index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1` | Robots directive |
+| `twitter_card` | `summary_large_image` | Twitter card type |
+| `schema` | on | Set to `FALSE` to suppress JSON-LD |
+| `schema_type` | `WebApplication` | Schema.org type |
+| `operating_system` | `Any` | Schema.org operating system |
+| `author_type` | `Person` | Schema.org author type |
+| `publisher_type` | `Organization` | Schema.org publisher type |
+| `in_language` | same as `locale` | Schema.org language |
 
-### Bilde- og delingsfelt
+### Optional share fields
 
-| Felt | Bruk |
+| Field | Used for |
 | --- | --- |
+| `site_name` | `og:site_name` |
 | `image_width` | `og:image:width` |
 | `image_height` | `og:image:height` |
 | `image_type` | `og:image:type` |
 | `image_alt` | `og:image:alt` |
-| `twitter_image_alt` | `twitter:image:alt` |
 | `twitter_site` | `twitter:site` |
 | `twitter_creator` | `twitter:creator` |
+| `twitter_image_alt` | `twitter:image:alt` |
 | `bing_site_verification` | `msvalidate.01` |
+| `application_category` | `applicationCategory` in schema.org |
+| `educational_use` | `educationalUse` in schema.org |
+| `is_accessible_for_free` | `isAccessibleForFree` in schema.org |
+| `disclaimer` | `disclaimer` in schema.org |
 
-### Schema-felt
+## Notes
 
-Når `schema` ikke er satt til `FALSE`, blir dette med i JSON-LD hvis verdiene finnes:
+- `social_meta()` returns HTML tags, so put it in the UI, not in the server.
+- If you pass a character string, it is treated as a file path.
+- If the file does not exist, the function stops with a clear error.
+- If a required field is missing, the function stops with a clear error.
+- The package is intentionally small and opinionated, but every default can be overridden.
 
-- `educational_use`
-- `is_accessible_for_free`
-- `disclaimer`
+## Reference
 
-## Viktige detaljer
-
-- `social_meta()` returnerer en HTML-blokk. Den skal legges inn i UI-en, ikke i serveren.
-- Hvis du sender inn en tekststreng, tolkes den som filsti til YAML.
-- Hvis filen ikke finnes, får du en feilmelding med filstien.
-- Hvis et av grunnfeltene mangler, stopper funksjonen med en tydelig feil.
-- Feltet `schema` er avskrudd bare når det er satt til `FALSE`. Alle andre verdier lar schema-delen stå på.
-- Standardverdiene er laget for en norsk Shiny-app, men alt kan overstyres.
-
-## Referanse
-
-Se [`docs/API.md`](docs/API.md) for en full feltkontrakt og [`docs/REFERENCE.md`](docs/REFERENCE.md) for praktiske bruksmønstre.
+See [`docs/API.md`](docs/API.md) for a full field contract and [`docs/REFERENCE.md`](docs/REFERENCE.md) for practical usage patterns.

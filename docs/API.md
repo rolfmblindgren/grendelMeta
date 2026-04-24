@@ -1,4 +1,4 @@
-# API Contract for `grendelMeta`
+# API Contract for `shinyMeta`
 
 This page is written so another agent can use the package without reading the source.
 
@@ -16,7 +16,7 @@ You normally place it inside a Shiny UI definition, for example:
 
 ```r
 ui <- shiny::fluidPage(
-  grendelMeta::social_meta(meta),
+  shinyMeta::social_meta(meta),
   shiny::h1("Hello")
 )
 ```
@@ -53,12 +53,10 @@ If any required key is missing, the function stops with:
 
 The package fills these defaults when the key is missing or `NULL`:
 
-- `locale = "nb_NO"`
-- `site_name = "Grendel"`
+- `locale = "en_US"`
 - `robots = "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"`
 - `twitter_card = "summary_large_image"`
 - `schema_type = "WebApplication"`
-- `application_category = "MedicalWebApplication"`
 - `operating_system = "Any"`
 - `author_type = "Person"`
 - `publisher_type = "Organization"`
@@ -142,13 +140,13 @@ The function writes these tags into the returned head fragment:
 
 - The function does not mutate the input list outside its local copy.
 - The helper returns plain Shiny tags, so it is safe to embed in `fluidPage()`, `navbarPage()`, or any other UI container that accepts head tags.
-- The package is opinionated toward a Norwegian Shiny app, but every default can be overridden.
+- The package is intentionally small and generic.
 - If you need a simpler SEO-only configuration, you can still use the required four fields and leave the rest blank.
 
 ## Minimal example
 
 ```r
-grendelMeta::social_meta(list(
+shinyMeta::social_meta(list(
   title = "Example app",
   description = "Short app description.",
   url = "https://example.no",

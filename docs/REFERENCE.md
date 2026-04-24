@@ -1,6 +1,6 @@
-# Referanse for `grendelMeta`
+# Referanse for `shinyMeta`
 
-Denne pakken gjør én ting: den lager metadata for en Shiny-app og returnerer dem som HTML-tagger til `<head>`.
+Denne pakken lager metadata for en Shiny-app og returnerer dem som HTML-tagger til `<head>`.
 
 Det er nyttig når du vil at siden skal se riktig ut i delinger på Facebook, LinkedIn, X, Slack og andre tjenester som leser Open Graph eller Twitter Card-metadata.
 
@@ -34,12 +34,10 @@ Hvis ett av dem mangler, stopper funksjonen med en feilmelding.
 
 Hvis du ikke setter dem selv, brukes disse standardene:
 
-- `locale = "nb_NO"`
-- `site_name = "Grendel"`
+- `locale = "en_US"`
 - `robots = "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"`
 - `twitter_card = "summary_large_image"`
 - `schema_type = "WebApplication"`
-- `application_category = "MedicalWebApplication"`
 - `operating_system = "Any"`
 - `author_type = "Person"`
 - `publisher_type = "Organization"`
@@ -109,7 +107,7 @@ Hvis du setter `schema = FALSE`, blir JSON-LD utelatt helt.
 
 ```r
 ui <- shiny::fluidPage(
-  grendelMeta::social_meta(list(
+  shinyMeta::social_meta(list(
     title = "Kalkulator",
     description = "En enkel app for å beregne noe.",
     url = "https://example.no",

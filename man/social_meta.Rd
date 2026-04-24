@@ -19,8 +19,8 @@ If \code{meta} is a character string, it is treated as a YAML file path and
 read with \code{yaml::read_yaml()}.
 
 The function fills defaults for common fields such as \code{locale},
-\code{site_name}, \code{robots}, \code{twitter_card}, and schema.org
-properties. Set \code{schema = FALSE} to omit JSON-LD entirely.
+\code{robots}, \code{twitter_card}, and schema.org properties. Set
+\code{schema = FALSE} to omit JSON-LD entirely.
 }
 \description{
 Inject social metadata into Shiny UI.
@@ -36,3 +36,7 @@ ui <- shiny::fluidPage(
 \seealso{
 \code{shiny::tags}
 }
+
+% Local Variables:
+% mode: Rd
+% End:
