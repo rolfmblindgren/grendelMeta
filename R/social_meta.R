@@ -7,7 +7,8 @@
 #'   Graph, Twitter Card, and optional schema.org metadata.
 #' @details If \code{meta} is a character string, it is treated as a YAML file
 #'   path and read with \code{yaml::read_yaml()}. Set \code{schema = FALSE} to
-#'   suppress JSON-LD output.
+#'   suppress JSON-LD output. Optional verification fields include
+#'   \code{bing_site_verification} and \code{google_site_verification}.
 #' @export
 social_meta <- function(meta) {
   if (is.character(meta)) {
@@ -70,6 +71,9 @@ social_meta <- function(meta) {
 
     if (!is.null(meta$bing_site_verification))
       shiny::tags$meta(name="msvalidate.01", content=meta$bing_site_verification),
+
+    if (!is.null(meta$google_site_verification))
+      shiny::tags$meta(name="google-site-verification", content=meta$google_site_verification),
 
     if (!is.null(schema))
       shiny::tags$script(

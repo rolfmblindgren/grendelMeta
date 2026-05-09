@@ -1,10 +1,14 @@
 Package: shinyseo
 Type: Package
-Title: SEO and Social Metadata Helpers for Shiny Apps
+Title: Search Engine Optimization and Social Metadata Helpers for 'Shiny' Apps
 Version: 0.1.0
 Authors@R: person(given="Rolf", family="Lindgren", email="rolf@grendel.no", role = c("aut", "cre"))
-Description: Utilities for injecting SEO, Open Graph, Twitter, and schema.org metadata
-    into Shiny applications from YAML files or named lists.
+Author: Rolf Lindgren [aut, cre]
+Maintainer: Rolf Lindgren <rolf@grendel.no>
+URL: https://cran.r-project.org/web/packages/shinyseo/index.html, https://github.com/rolfmblindgren/grendelMeta
+BugReports: https://github.com/rolfmblindgren/grendelMeta/issues
+Description: Utilities for injecting search engine optimization (SEO), Open Graph, Twitter, and schema.org metadata
+    into 'Shiny' applications from YAML files or named lists.
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true

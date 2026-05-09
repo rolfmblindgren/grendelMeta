@@ -50,6 +50,20 @@ test_that("schema can be disabled", {
   expect_false(grepl("application/ld\\+json", html))
 })
 
+test_that("social_meta includes verification tags when configured", {
+  html <- htmltools::renderTags(social_meta(list(
+    title = "Verified app",
+    description = "Short app description.",
+    url = "https://example.no",
+    image = "https://example.no/share.png",
+    bing_site_verification = "bing-token",
+    google_site_verification = "google-token"
+  )))$head
+
+  expect_match(html, "name=\"msvalidate.01\" content=\"bing-token\"", fixed = TRUE)
+  expect_match(html, "name=\"google-site-verification\" content=\"google-token\"", fixed = TRUE)
+})
+
 # Local Variables:
 # mode: R
 # End:

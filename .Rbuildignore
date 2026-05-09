@@ -1,6 +1,12 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^\.git$
+^\.gitignore$
+^\.DS_Store$
+^\.Rhistory$
 ^cran-comments\.md$
 ^LICENSE\.md$
 ^.*\.Rcheck$
 ^.*\.tar\.gz$
+^\.positai$
+^\.claude$

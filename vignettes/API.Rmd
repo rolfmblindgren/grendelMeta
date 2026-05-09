@@ -86,7 +86,7 @@ The function writes these tags into the returned head fragment:
 - `<link rel="canonical" href="...">`
 - `<meta name="description" ...>`
 - `<meta name="robots" ...>`
-- Open Graph tags:
+- Open Graph tags used by Facebook, LinkedIn, Slack, X, and other platforms that read Open Graph:
   - `og:type = website`
   - `og:title`
   - `og:description`
@@ -109,6 +109,8 @@ The function writes these tags into the returned head fragment:
   - `twitter:image:alt` when `twitter_image_alt` is present
 - Bing verification:
   - `msvalidate.01` when `bing_site_verification` is present
+- Google verification:
+  - `google-site-verification` when `google_site_verification` is present
 - Schema.org JSON-LD:
   - only when `schema` is not `FALSE`
   - always includes `@context`, `@type`, `name`, `description`, `url`, and `inLanguage`
@@ -133,6 +135,7 @@ The function writes these tags into the returned head fragment:
 | `image_height` | Open Graph image height |
 | `image_type` | Open Graph image MIME type |
 | `bing_site_verification` | Bing Webmaster verification |
+| `google_site_verification` | Google Search Console verification |
 | `schema_type` | Schema.org `@type` |
 | `application_category` | Schema.org `applicationCategory` |
 | `operating_system` | Schema.org `operatingSystem` |

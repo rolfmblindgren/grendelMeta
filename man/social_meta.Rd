@@ -21,5 +21,6 @@ Inject social metadata into Shiny UI
 \details{
 If \code{meta} is a character string, it is treated as a YAML file
   path and read with \code{yaml::read_yaml()}. Set \code{schema = FALSE} to
-  suppress JSON-LD output.
+  suppress JSON-LD output. Optional verification fields include
+  \code{bing_site_verification} and \code{google_site_verification}.
 }
