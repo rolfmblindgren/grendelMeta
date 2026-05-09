@@ -78,6 +78,30 @@ If you want shared defaults across several apps, you can set these in
 - `SHINYSEO_TWITTER_SITE`
 - `SHINYSEO_TWITTER_CREATOR`
 
+## What belongs where
+
+Use `.Renviron` for values that are shared across many apps on the same
+machine or deployment:
+
+- `SHINYSEO_BING_SITE_VERIFICATION`
+- `SHINYSEO_TWITTER_SITE`
+- `SHINYSEO_TWITTER_CREATOR`
+
+Keep per-app values in each app's `meta.yml`:
+
+- `title`
+- `description`
+- `url`
+- `image`
+- `locale` if one app differs from the shared default
+- `site_name` if one app needs a different display name
+- `twitter_site` or `twitter_creator` if one app should override the shared default
+- `bing_site_verification` if one app needs a different Bing token
+
+`SHINYSEO_GOOGLE_ANALYTICS_MEASUREMENT_ID` is not used by `shinyseo` itself.
+If you use GA4, keep that in your server or deployment config instead of in
+`meta.yml`.
+
 ## Quick use
 
 ```r
