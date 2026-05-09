@@ -12,6 +12,8 @@
 #'   set. \code{twitter_site} and \code{twitter_creator} fall back to
 #'   \code{SHINYSEO_TWITTER_SITE} and
 #'   \code{SHINYSEO_TWITTER_CREATOR} when those environment variables are set.
+#'   The helper does not emit a \code{<title>} tag; set the document title in
+#'   the app UI so it does not clash with an existing Shiny title.
 #'   Optional verification fields include
 #'   \code{bing_site_verification}, \code{google_site_verification},
 #'   \code{yandex_site_verification}, \code{baidu_site_verification},
@@ -102,9 +104,7 @@ social_meta <- function(meta) {
       shiny::tags$script(
         type = "application/ld+json",
         shiny::HTML(jsonlite::toJSON(schema, auto_unbox = TRUE))
-      ),
-
-    shiny::tags$title(meta$title)
+      )
   )
 }
 

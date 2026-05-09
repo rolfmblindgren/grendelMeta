@@ -8,7 +8,6 @@ test_that("social_meta builds metadata head tags", {
 
   html <- htmltools::renderTags(tags)$head
 
-  expect_match(html, "<title>Example app</title>", fixed = TRUE)
   expect_match(html, "rel=\"canonical\"", fixed = TRUE)
   expect_match(html, "property=\"og:title\" content=\"Example app\"", fixed = TRUE)
   expect_match(html, "name=\"twitter:card\" content=\"summary_large_image\"", fixed = TRUE)

@@ -72,7 +72,7 @@ The function builds:
 - `meta name="facebook-domain-verification"` when Facebook domain verification is set
 - `meta name="p:domain_verify"` when Pinterest domain verification is set
 - `<script type="application/ld+json">` for schema.org
-- `<title>`
+- no `<title>` tag; set the title in the app UI instead
 
 ## Open Graph
 

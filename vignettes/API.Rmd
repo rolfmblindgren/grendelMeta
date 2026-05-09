@@ -81,6 +81,8 @@ Important detail:
 - `schema` is enabled unless it is exactly `FALSE`
 - `schema = TRUE`, `schema = NULL`, or an omitted `schema` field all result in JSON-LD output
 - `schema = FALSE` suppresses JSON-LD
+- The helper does not emit a `<title>` tag; set the document title in the app
+  UI so it does not clash with any title Shiny already sets
 
 ## Output tags
 
@@ -133,7 +135,7 @@ The function writes these tags into the returned head fragment:
 
 | Key | Used for |
 | --- | --- |
-| `title` | Page title, Open Graph title, Twitter title, schema name |
+| `title` | Open Graph title, Twitter title, schema name |
 | `description` | Meta description, Open Graph description, Twitter description, schema description |
 | `url` | Canonical URL, Open Graph URL, Twitter URL, schema URL |
 | `image` | Open Graph image, Twitter image |

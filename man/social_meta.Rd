@@ -26,6 +26,8 @@ If \code{meta} is a character string, it is treated as a YAML file
   set. \code{twitter_site} and
   \code{twitter_creator} fall back to \code{SHINYSEO_TWITTER_SITE} and
   \code{SHINYSEO_TWITTER_CREATOR} when those environment variables are set.
+  The helper does not emit a \code{<title>} tag; set the document title in
+  the app UI so it does not clash with any title Shiny already sets.
   Optional verification fields include
   \code{bing_site_verification}, \code{google_site_verification},
   \code{yandex_site_verification}, \code{baidu_site_verification},
