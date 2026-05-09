@@ -46,6 +46,8 @@ If you do not set them yourself, these defaults are used:
 - `locale = "en_US"`
 - `robots = "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"`
 - `twitter_card = "summary_large_image"`
+- `twitter_site = Sys.getenv("SHINYSEO_TWITTER_SITE")` when present
+- `twitter_creator = Sys.getenv("SHINYSEO_TWITTER_CREATOR")` when present
 - `schema_type = "WebApplication"`
 - `operating_system = "Any"`
 - `author_type = "Person"`
@@ -63,6 +65,11 @@ The function builds:
 - `meta name="twitter:*"`
 - `meta name="msvalidate.01"` when Bing verification is set
 - `meta name="google-site-verification"` when Google verification is set
+- `meta name="yandex-verification"` when Yandex verification is set
+- `meta name="baidu-site-verification"` when Baidu verification is set
+- `meta name="naver-site-verification"` when Naver verification is set
+- `meta name="facebook-domain-verification"` when Facebook domain verification is set
+- `meta name="p:domain_verify"` when Pinterest domain verification is set
 - `<script type="application/ld+json">` for schema.org
 - `<title>`
 
@@ -86,8 +93,8 @@ These fields are used directly in Open Graph:
 These fields are used directly in Twitter Card:
 
 - `twitter_card`
-- `twitter_site`
-- `twitter_creator`
+- `twitter_site` with fallback to `SHINYSEO_TWITTER_SITE`
+- `twitter_creator` with fallback to `SHINYSEO_TWITTER_CREATOR`
 - `twitter_image_alt`
 
 ## Schema.org JSON-LD

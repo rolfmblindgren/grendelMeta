@@ -67,6 +67,8 @@ The package fills these defaults when the key is missing or `NULL`:
 - `locale = "en_US"`
 - `robots = "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"`
 - `twitter_card = "summary_large_image"`
+- `twitter_site = Sys.getenv("SHINYSEO_TWITTER_SITE")` when present
+- `twitter_creator = Sys.getenv("SHINYSEO_TWITTER_CREATOR")` when present
 - `schema_type = "WebApplication"`
 - `operating_system = "Any"`
 - `author_type = "Person"`
@@ -111,6 +113,16 @@ The function writes these tags into the returned head fragment:
   - `msvalidate.01` when `bing_site_verification` is present
 - Google verification:
   - `google-site-verification` when `google_site_verification` is present
+- Yandex verification:
+  - `yandex-verification` when `yandex_site_verification` is present
+- Baidu verification:
+  - `baidu-site-verification` when `baidu_site_verification` is present
+- Naver verification:
+  - `naver-site-verification` when `naver_site_verification` is present
+- Facebook domain verification:
+  - `facebook-domain-verification` when `facebook_domain_verification` is present
+- Pinterest domain verification:
+  - `p:domain_verify` when `pinterest_domain_verification` is present
 - Schema.org JSON-LD:
   - only when `schema` is not `FALSE`
   - always includes `@context`, `@type`, `name`, `description`, `url`, and `inLanguage`
@@ -127,8 +139,8 @@ The function writes these tags into the returned head fragment:
 | `locale` | Open Graph locale, schema language default |
 | `robots` | Robots meta tag |
 | `twitter_card` | Twitter card type |
-| `twitter_site` | Twitter site handle |
-| `twitter_creator` | Twitter creator handle |
+| `twitter_site` | Twitter site handle; falls back to `SHINYSEO_TWITTER_SITE` |
+| `twitter_creator` | Twitter creator handle; falls back to `SHINYSEO_TWITTER_CREATOR` |
 | `twitter_image_alt` | Twitter image alt text |
 | `image_alt` | Open Graph image alt text |
 | `image_width` | Open Graph image width |
@@ -136,6 +148,11 @@ The function writes these tags into the returned head fragment:
 | `image_type` | Open Graph image MIME type |
 | `bing_site_verification` | Bing Webmaster verification |
 | `google_site_verification` | Google Search Console verification |
+| `yandex_site_verification` | Yandex Webmaster verification |
+| `baidu_site_verification` | Baidu Webmaster verification |
+| `naver_site_verification` | Naver Webmaster verification |
+| `facebook_domain_verification` | Facebook domain verification |
+| `pinterest_domain_verification` | Pinterest domain verification |
 | `schema_type` | Schema.org `@type` |
 | `application_category` | Schema.org `applicationCategory` |
 | `operating_system` | Schema.org `operatingSystem` |

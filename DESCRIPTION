@@ -1,14 +1,14 @@
 Package: shinyseo
 Type: Package
-Title: Search Engine Optimization and Social Metadata Helpers for 'Shiny' Apps
+Title: Search Engine Optimization, Social Metadata, and Site Verification Helpers for 'Shiny' Apps
 Version: 0.1.0
 Authors@R: person(given="Rolf", family="Lindgren", email="rolf@grendel.no", role = c("aut", "cre"))
 Author: Rolf Lindgren [aut, cre]
 Maintainer: Rolf Lindgren <rolf@grendel.no>
-URL: https://cran.r-project.org/web/packages/shinyseo/index.html, https://github.com/rolfmblindgren/grendelMeta
+URL: https://CRAN.R-project.org/package=shinyseo, https://github.com/rolfmblindgren/grendelMeta
 BugReports: https://github.com/rolfmblindgren/grendelMeta/issues
-Description: Utilities for injecting search engine optimization (SEO), Open Graph, Twitter, and schema.org metadata
-    into 'Shiny' applications from YAML files or named lists.
+Description: Utilities for injecting search engine optimization (SEO), Open Graph, Twitter, site verification,
+    and schema.org metadata into 'Shiny' applications from YAML files or named lists.
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
@@ -23,4 +23,4 @@ Suggests:
     testthat (>= 3.0.0)
 VignetteBuilder: knitr
 Config/testthat/edition: 3
-RoxygenNote: 7.3.3
+Config/roxygen2/version: 8.0.0

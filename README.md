@@ -1,7 +1,7 @@
 # shinyseo
 
-[![CRAN version](https://www.r-pkg.org/badges/version/shinyseo)](https://cran.r-project.org/package=shinyseo)
-[![CRAN total downloads](https://cranlogs.r-pkg.org/badges/grand-total/shinyseo?color=blue)](https://cran.r-project.org/package=shinyseo)
+[![CRAN version](https://www.r-pkg.org/badges/version/shinyseo)](https://CRAN.R-project.org/package=shinyseo)
+[![CRAN total downloads](https://cranlogs.r-pkg.org/badges/grand-total/shinyseo?color=blue)](https://CRAN.R-project.org/package=shinyseo)
 
 `shinyseo` is a small helper package for Shiny apps that need social and search metadata.
 
@@ -12,7 +12,7 @@ It builds one `shiny::tags$head()` fragment containing:
 - Open Graph tags for Facebook, LinkedIn, Slack, and similar previews
 - Twitter Card tags
 - optional schema.org JSON-LD
-- optional Bing and Google site verification
+- optional Bing, Google, Yandex, Baidu, Naver, Facebook, and Pinterest verification
 
 The package accepts either a YAML file path or a named list.
 
@@ -64,7 +64,18 @@ Common extras:
 | `twitter_image_alt` | Sets `twitter:image:alt` |
 | `bing_site_verification` | Sets Bing verification |
 | `google_site_verification` | Sets Google Search Console verification |
+| `yandex_site_verification` | Sets Yandex Webmaster verification |
+| `baidu_site_verification` | Sets Baidu Webmaster verification |
+| `naver_site_verification` | Sets Naver Webmaster verification |
+| `facebook_domain_verification` | Sets Facebook domain verification |
+| `pinterest_domain_verification` | Sets Pinterest domain verification |
 | `schema` | Set to `FALSE` to disable JSON-LD |
+
+If you want shared defaults across several apps, you can set these in
+`.Renviron` and let app-level YAML override them when needed:
+
+- `SHINYSEO_TWITTER_SITE`
+- `SHINYSEO_TWITTER_CREATOR`
 
 ## Quick use
 
