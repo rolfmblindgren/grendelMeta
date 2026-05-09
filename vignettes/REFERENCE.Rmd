@@ -46,6 +46,7 @@ If you do not set them yourself, these defaults are used:
 - `locale = "en_US"`
 - `robots = "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"`
 - `twitter_card = "summary_large_image"`
+- `bing_site_verification = Sys.getenv("SHINYSEO_BING_SITE_VERIFICATION")` when present
 - `twitter_site = Sys.getenv("SHINYSEO_TWITTER_SITE")` when present
 - `twitter_creator = Sys.getenv("SHINYSEO_TWITTER_CREATOR")` when present
 - `schema_type = "WebApplication"`
@@ -63,7 +64,7 @@ The function builds:
 - `meta name="robots"`
 - `meta property="og:*"`
 - `meta name="twitter:*"`
-- `meta name="msvalidate.01"` when Bing verification is set
+- `meta name="msvalidate.01"` when Bing verification is set or when `SHINYSEO_BING_SITE_VERIFICATION` is present
 - `meta name="google-site-verification"` when Google verification is set
 - `meta name="yandex-verification"` when Yandex verification is set
 - `meta name="baidu-site-verification"` when Baidu verification is set
@@ -96,6 +97,15 @@ These fields are used directly in Twitter Card:
 - `twitter_site` with fallback to `SHINYSEO_TWITTER_SITE`
 - `twitter_creator` with fallback to `SHINYSEO_TWITTER_CREATOR`
 - `twitter_image_alt`
+
+## Bing verification
+
+Bing verification is used directly when the following is set:
+
+- `bing_site_verification`
+
+If that field is missing, `SHINYSEO_BING_SITE_VERIFICATION` is used when
+present.
 
 ## Schema.org JSON-LD
 

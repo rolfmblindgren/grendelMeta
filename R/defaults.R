@@ -12,6 +12,7 @@ apply_defaults <- function(meta) {
   meta$locale           <- meta$locale           %||% "en_US"
   meta$robots           <- meta$robots           %||% "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
   meta$twitter_card     <- meta$twitter_card     %||% "summary_large_image"
+  meta$bing_site_verification <- meta$bing_site_verification %||% env_or_null("SHINYSEO_BING_SITE_VERIFICATION")
   meta$twitter_site     <- meta$twitter_site     %||% env_or_null("SHINYSEO_TWITTER_SITE")
   meta$twitter_creator  <- meta$twitter_creator  %||% env_or_null("SHINYSEO_TWITTER_CREATOR")
   meta$schema_type      <- meta$schema_type      %||% "WebApplication"

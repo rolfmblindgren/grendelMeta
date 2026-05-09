@@ -67,6 +67,7 @@ The package fills these defaults when the key is missing or `NULL`:
 - `locale = "en_US"`
 - `robots = "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"`
 - `twitter_card = "summary_large_image"`
+- `bing_site_verification = Sys.getenv("SHINYSEO_BING_SITE_VERIFICATION")` when present
 - `twitter_site = Sys.getenv("SHINYSEO_TWITTER_SITE")` when present
 - `twitter_creator = Sys.getenv("SHINYSEO_TWITTER_CREATOR")` when present
 - `schema_type = "WebApplication"`
@@ -146,7 +147,7 @@ The function writes these tags into the returned head fragment:
 | `image_width` | Open Graph image width |
 | `image_height` | Open Graph image height |
 | `image_type` | Open Graph image MIME type |
-| `bing_site_verification` | Bing Webmaster verification |
+| `bing_site_verification` | Bing Webmaster verification; falls back to `SHINYSEO_BING_SITE_VERIFICATION` |
 | `google_site_verification` | Google Search Console verification |
 | `yandex_site_verification` | Yandex Webmaster verification |
 | `baidu_site_verification` | Baidu Webmaster verification |

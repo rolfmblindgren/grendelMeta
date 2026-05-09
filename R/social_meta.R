@@ -7,8 +7,10 @@
 #'   Graph, Twitter Card, and optional schema.org metadata.
 #' @details If \code{meta} is a character string, it is treated as a YAML file
 #'   path and read with \code{yaml::read_yaml()}. Set \code{schema = FALSE} to
-#'   suppress JSON-LD output. \code{twitter_site} and
-#'   \code{twitter_creator} fall back to \code{SHINYSEO_TWITTER_SITE} and
+#'   suppress JSON-LD output. \code{bing_site_verification} falls back to
+#'   \code{SHINYSEO_BING_SITE_VERIFICATION} when that environment variable is
+#'   set. \code{twitter_site} and \code{twitter_creator} fall back to
+#'   \code{SHINYSEO_TWITTER_SITE} and
 #'   \code{SHINYSEO_TWITTER_CREATOR} when those environment variables are set.
 #'   Optional verification fields include
 #'   \code{bing_site_verification}, \code{google_site_verification},

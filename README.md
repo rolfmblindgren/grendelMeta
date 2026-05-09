@@ -74,6 +74,7 @@ Common extras:
 If you want shared defaults across several apps, you can set these in
 `.Renviron` and let app-level YAML override them when needed:
 
+- `SHINYSEO_BING_SITE_VERIFICATION`
 - `SHINYSEO_TWITTER_SITE`
 - `SHINYSEO_TWITTER_CREATOR`
 

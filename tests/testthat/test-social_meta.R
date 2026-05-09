@@ -82,6 +82,28 @@ test_that("twitter metadata can fall back to environment defaults", {
   expect_match(html, "name=\"twitter:creator\" content=\"@example_creator\"", fixed = TRUE)
 })
 
+test_that("bing verification can fall back to environment defaults", {
+  old_bing <- Sys.getenv("SHINYSEO_BING_SITE_VERIFICATION", unset = NA_character_)
+  on.exit({
+    if (is.na(old_bing)) {
+      Sys.unsetenv("SHINYSEO_BING_SITE_VERIFICATION")
+    } else {
+      Sys.setenv(SHINYSEO_BING_SITE_VERIFICATION = old_bing)
+    }
+  }, add = TRUE)
+
+  Sys.setenv(SHINYSEO_BING_SITE_VERIFICATION = "bing-env-token")
+
+  html <- htmltools::renderTags(social_meta(list(
+    title = "Bing env defaults",
+    description = "Short app description.",
+    url = "https://example.no",
+    image = "https://example.no/share.png"
+  )))$head
+
+  expect_match(html, "name=\"msvalidate.01\" content=\"bing-env-token\"", fixed = TRUE)
+})
+
 test_that("social_meta includes verification tags when configured", {
   html <- htmltools::renderTags(social_meta(list(
     title = "Verified app",
