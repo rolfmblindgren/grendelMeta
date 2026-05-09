@@ -7,41 +7,41 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-# Referanse for `shinyseo`
+# Reference for `shinyseo`
 
-Denne pakken lager metadata for en Shiny-app og returnerer dem som HTML-tagger til `<head>`.
+This package generates metadata for a Shiny app and returns HTML tags for `<head>`.
 
-Det er nyttig når du vil at siden skal se riktig ut i delinger på Facebook, LinkedIn, X, Slack og andre tjenester som leser Open Graph eller Twitter Card-metadata.
+It is useful when you want the page to look right in shares on Facebook, LinkedIn, X, Slack, and other services that read Open Graph or Twitter Card metadata.
 
-## Hovedflyt
+## Main flow
 
-1. Du sender inn en YAML-fil eller en navngitt liste.
-2. `social_meta()` leser inn dataene.
-3. Standardverdier fylles inn der det passer.
-4. De fire grunnfeltene blir kontrollert.
-5. Funksjonen bygger en `tags$head()`-blokk med metadata.
+1. Pass a YAML file or a named list.
+2. `social_meta()` reads the data.
+3. Default values are filled in where needed.
+4. The four required fields are checked.
+5. The function builds a `tags$head()` block with metadata.
 
-## Inndata
+## Inputs
 
-`social_meta(meta)` tar imot:
+`social_meta(meta)` accepts:
 
-- en streng med filsti til YAML
-- eller en navngitt liste
+- a string containing a path to YAML
+- or a named list
 
-### Obligatoriske felter
+### Required fields
 
-Disse må finnes uansett:
+These must always exist:
 
 - `title`
 - `description`
 - `url`
 - `image`
 
-Hvis ett av dem mangler, stopper funksjonen med en feilmelding.
+If one is missing, the function stops with an error.
 
-## Standardverdier
+## Defaults
 
-Hvis du ikke setter dem selv, brukes disse standardene:
+If you do not set them yourself, these defaults are used:
 
 - `locale = "en_US"`
 - `robots = "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"`
@@ -52,22 +52,23 @@ Hvis du ikke setter dem selv, brukes disse standardene:
 - `publisher_type = "Organization"`
 - `in_language = locale`
 
-## Hvilke tagger som blir laget
+## What tags are created
 
-Funksjonen bygger blant annet:
+The function builds:
 
 - `<link rel="canonical">`
 - `meta name="description"`
 - `meta name="robots"`
 - `meta property="og:*"`
 - `meta name="twitter:*"`
-- `meta name="msvalidate.01"` hvis Bing-verifisering er satt
+- `meta name="msvalidate.01"` when Bing verification is set
+- `meta name="google-site-verification"` when Google verification is set
 - `<script type="application/ld+json">` for schema.org
 - `<title>`
 
 ## Open Graph
 
-Disse feltene brukes direkte i Open Graph:
+These fields are used directly in Open Graph:
 
 - `title`
 - `description`
@@ -82,7 +83,7 @@ Disse feltene brukes direkte i Open Graph:
 
 ## Twitter Card
 
-Disse feltene brukes direkte i Twitter Card:
+These fields are used directly in Twitter Card:
 
 - `twitter_card`
 - `twitter_site`
@@ -91,7 +92,7 @@ Disse feltene brukes direkte i Twitter Card:
 
 ## Schema.org JSON-LD
 
-JSON-LD blir laget med disse grunnfeltene:
+JSON-LD is created with these base fields:
 
 - `@context = "https://schema.org"`
 - `@type = schema_type`
@@ -100,7 +101,7 @@ JSON-LD blir laget med disse grunnfeltene:
 - `url = url`
 - `inLanguage = in_language`
 
-I tillegg kan disse feltene være med:
+Additional fields may be included:
 
 - `application_category`
 - `operating_system`
@@ -110,32 +111,32 @@ I tillegg kan disse feltene være med:
 - `author_name`
 - `publisher_name`
 
-Hvis du setter `schema = FALSE`, blir JSON-LD utelatt helt.
+If you set `schema = FALSE`, JSON-LD is omitted entirely.
 
-## Praktisk eksempel
+## Practical example
 
 ```r
 ui <- shiny::fluidPage(
   shinyseo::social_meta(list(
-    title = "Kalkulator",
-    description = "En enkel app for å beregne noe.",
+    title = "Calculator",
+    description = "A simple app for calculating things.",
     url = "https://example.no",
     image = "https://example.no/preview.png",
     twitter_site = "@example",
     twitter_creator = "@example",
     schema = TRUE
   )),
-  shiny::h1("Kalkulator")
+  shiny::h1("Calculator")
 )
 ```
 
-## Når du bør bruke den
+## When to use it
 
-Bruk pakken når du vil ha en liten og ryddig løsning for metadata i en Shiny-app uten å bygge en egen metadata-motor.
+Use the package when you want a small, tidy metadata solution in a Shiny app without building a custom metadata engine.
 
-Den passer spesielt godt når du:
+It is especially useful when you:
 
-- har én app eller et lite antall apper
-- vil styre metadata fra en YAML-fil
-- vil ha samme metadata i flere miljøer
-- vil ha sosial deling og søk som oppfører seg forutsigbart
+- have one app or a small number of apps
+- want to manage metadata from a YAML file
+- want the same metadata across multiple environments
+- want social sharing and search results to behave predictably
