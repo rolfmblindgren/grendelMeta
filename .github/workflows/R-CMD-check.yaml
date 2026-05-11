@@ -5,6 +5,8 @@ on:
   pull_request:
     branches:
       - main
+  schedule:
+    - cron: "0 6 * * 0"
 
 name: R-CMD-check
 
@@ -42,4 +44,3 @@ jobs:
         uses: r-lib/actions/check-r-package@v2
         with:
           upload-snapshots: true
-
